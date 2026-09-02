@@ -42,3 +42,4 @@ names(crashes_by_day_int)="Mon", "Tue", "Wed", "Thu",
 
 
 typeof(crashes_by_day_int)
+```
