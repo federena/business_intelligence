@@ -29,7 +29,7 @@ ui = page_sidebar(
        DT::DTOutput("table")),
   accordion(open = FALSE,
             accordion_panel("SQL", verbatimTextOutput("sql")),
-            accordion_panel("About", "Airbnb Listings; built by Nathan Federer"))
+            accordion_panel("This app uses 14,887 Airbnb listings from inside Airbnb. The data includes listings from Chicago(July 20, 2026), Columbus(July 23, 2026) and the Twin Cities(July 21,2026).", "Airbnb Listings; built by Nathan Federer"))
 )
 
 server = function(input, output, session) {
