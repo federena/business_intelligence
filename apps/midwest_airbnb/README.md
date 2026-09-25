@@ -11,6 +11,8 @@ A twelve-line [querychat](https://github.com/posit-dev/querychat) app built in I
 
 **Example queries:**
 - "Which neighborhood in columbus has the highest price home?"
+- <img width="814" height="611" alt="image" src="https://github.com/user-attachments/assets/e4da865c-330c-414c-aac3-bd4c9aeeef3c" />
+
 - "Which neighborhood in Chicago has has the lowest average price?"
 - "What are the top 10 highest listings in the twin cities"
 
