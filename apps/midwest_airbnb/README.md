@@ -14,7 +14,11 @@ A twelve-line [querychat](https://github.com/posit-dev/querychat) app built in I
 - <img width="814" height="611" alt="image" src="https://github.com/user-attachments/assets/e4da865c-330c-414c-aac3-bd4c9aeeef3c" />
 
 - "Which neighborhood in Chicago has has the lowest average price?"
+- <img width="854" height="549" alt="image" src="https://github.com/user-attachments/assets/49cd7179-0b66-43ce-8ecf-f4d584c92aeb" />
+
 - "What are the top 10 highest listings in the twin cities"
+- <img width="1812" height="685" alt="image" src="https://github.com/user-attachments/assets/40d423b3-a651-4c91-9fe1-d647b2e24a2a" />
+
 
 ---
 
