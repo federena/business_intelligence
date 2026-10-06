@@ -1,0 +1,108 @@
+---
+title: "Assignment 7 Web Scraping"
+author: "Nathan Federer"
+date: "2026-10-06"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r chatrewrite}
+library(tidyverse)
+library(rvest)
+library(xml2)
+
+# URLs for the seven FSB academic departments
+urls <- c(
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Accountancy/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Economics/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Entrepreneurship/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Finance/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Information%20Systems%20--%20Analytics/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Marketing/all",
+  "https://miamioh.edu/fsb/directory/?up=/query/all/all/Management/all"
+)
+
+# Department names
+departments <- c(
+  "Accountancy",
+  "Economics",
+  "Entrepreneurship",
+  "Finance",
+  "Information Systems & Analytics",
+  "Marketing",
+  "Management"
+)
+
+# Read all seven webpages
+pages <- map(urls, read_html)
+
+# Function to scrape one department page
+scrape_department <- function(page, dept_name) {
+  
+  rows <- page |> 
+    html_elements("tr")
+  
+  map_dfr(rows, function(row) {
+    
+    cells <- row |> 
+      html_elements("td")
+    
+    if (length(cells) < 3) {
+      return(NULL)
+    }
+    
+    department <- cells[[1]] |> 
+      html_text2() |> 
+      str_squish()
+    
+    # Keep only the requested academic department
+    if (department != dept_name) {
+      return(NULL)
+    }
+    
+    person_cell <- cells[[3]]
+    
+    person_link <- person_cell |> 
+      html_element("a")
+    
+    if (length(person_link) == 0) {
+      return(NULL)
+    }
+    
+    # Person's name
+    name <- person_link |> 
+      html_text2() |> 
+      str_squish() |> 
+      str_remove(",\\s*(Ph\\.D\\.|M\\.S\\.|MBA|Ed\\.D\\.)$")
+    
+    # Person's website
+    website <- person_link |> 
+      html_attr("href")
+    
+    # Person's position
+    position <- person_cell |> 
+      xml_find_all(".//text()[not(ancestor::a)]") |> 
+      xml2::xml_text() |> 
+      paste(collapse = " ") |> 
+      str_squish()
+    
+    tibble(
+      department = department,
+      name = name,
+      position = position,
+      website = website
+    )
+  })
+}
+
+# Scrape all seven departments
+fsb <- map2(pages, departments, scrape_department) |> 
+  bind_rows()
+
+# Print the first few observations
+head(fsb)
+```
+
