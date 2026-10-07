@@ -1,0 +1,38 @@
+---
+title: "Class 13"
+author: "Nathan Federer"
+date: "2026-10-07"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Plane Crash example
+
+<https://www.planecrashinfo.com/2025/2025.htm>
+
+```{r}
+#year = 2025
+#rash_url = paste0('https://www.planecrashinfo.com',year,"/",year,'.htm')
+
+#rash_page <- rvest::read_html(crash_url,encoding = "ISO-8859-1")
+
+#rash_page |> 
+ #rvest::html_elements("td:nth-child(1) > font > a") |>
+ #rvest::html_text2() -> dates
+
+#rash_page |> 
+ #rvest::html_elements("td:nth-child(2) > font") |>
+ #rvest::html_text2() -> loc_op
+
+#Skipped col 3 exactly similar for time purposes
+
+#rash_page |> 
+ #rvest::html_elements("td:nth-child(4) > font") |>
+# rvest::html_text2() -> fatalities
+
+#f = data.frame     
+```
+
